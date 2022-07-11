@@ -1,0 +1,32 @@
+.nav-link {
+    color: white;
+}
+
+.card {
+    display: inline-block;
+    border-radius: 5%;
+}
+
+#quick {
+  border-radius: 0%;
+}
+
+.stickyClass {
+  top: 20px !important;
+  position: sticky !important;
+}
+
+a {
+  color: #6495ED;
+  text-decoration: none;
+
+}
+
+a:hover {
+  color: #6495ED;
+  text-decoration: underline;
+}
+
+.progress {
+  height: 10px;
+}
