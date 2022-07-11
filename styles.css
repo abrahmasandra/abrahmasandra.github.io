@@ -17,16 +17,36 @@
 }
 
 a {
-  color: #6495ED;
   text-decoration: none;
-
 }
 
 a:hover {
-  color: #6495ED;
   text-decoration: underline;
 }
 
 .progress {
   height: 10px;
+}
+
+.accordion-button {
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+}
+
+.accordion-header {
+  width: 100%;
+  text-align: left;
+  font-weight: bold;
+}
+
+.experience_desc {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+}
+.flex-child {
+  display: inline-block;
+  font-size: smaller;
 }
