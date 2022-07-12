@@ -27,10 +27,9 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg bg-dark">
+            <nav class="navbar sticky-top navbar-expand-lg bg-dark" id="main_nav">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
-                      <img src="atom.png" alt="" width="27" height="27" class="d-inline-block align-text-top">
                       arnav brahmasandra
                     </a>
                 </div>
@@ -78,6 +77,20 @@
                           <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                         </svg>
                         chicago, il
+                        <div id="interests" style="display: inline; margin-left: 1px;">
+                          |
+                          <i class="fa-solid fa-person-hiking m-1" data-bs-toggle="tooltip" title="i love to hike and recently went backpacking in death valley!"></i>
+                          <i class="fa-solid fa-baseball m-1" data-bs-toggle="tooltip" title="tennis with friends!"></i>
+                          <i class="fa-solid fa-music m-1" data-bs-toggle="tooltip" title="i play piano for fun (esp rock songs)!"></i>
+                          <i class="fa-solid fa-headphones m-1" data-bs-toggle="tooltip" title="big metalcore fan!"></i>
+                          <i class="fa-solid fa-book m-1" data-bs-toggle="tooltip" title="love reading popular science/nonfiction!"></i>
+                        </div>
+                        <script>
+                          let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+                          let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                            return new bootstrap.Tooltip(tooltipTriggerEl)
+                          })
+                        </script>
                       </li>
                       <li class="list-group-item list-group-item-dark">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
