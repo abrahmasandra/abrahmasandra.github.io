@@ -29,7 +29,8 @@
     </head>
     <body>
         <header>
-              <nav class="bg-dark sticky-top navbar navbar-expand-md">
+            <div style="position: sticky; top: 0px; z-index:1000;">
+              <nav class="bg-dark sticky-top navbar navbar-expand-sm">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="/"><span>arnav brahmasandra</span></a>
                     <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
@@ -56,12 +57,12 @@
                   </div>
                 </div>
             </nav>
-
+            </div>
         </header>
         <main>
           <div class="container-fluid">
             <div class="row" style="height:100%">
-              <div class="stickyClass d-flex justify-content-center col-md-3 col-12" style="height:100%;">
+              <div class="stickyClass d-flex justify-content-center col-xs-12 col-md-4 col-sm-12 col-lg-3" style="height:100%;">
                 <div id="quick" class="card text-white bg-dark border-primary mt-3 mb-4" style="height:100%;">
                 <img class="card-img-top" src="arnav.jpg" alt="Card image cap">
                   <div class="card-body">
@@ -117,7 +118,7 @@
                 </div>
               </div>
 
-              <div class="d-flex flex-column col-md-9 col-12">
+              <div class="d-flex flex-column col-xs-12 col-md-8 col-sm-12 col-lg-9">
                 <div id="about" class="m-2">
                   <h3>
                       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
@@ -477,7 +478,7 @@
                       here are some of my personal projects!
                     </p>
                     <div class="container">
-                    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" style="width: 50rem;">
+                    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
                       <!-- Indicators -->
                       <ol class="carousel-indicators">
                         <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
