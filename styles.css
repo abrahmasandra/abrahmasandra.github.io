@@ -28,6 +28,12 @@
 .card {
     display: inline-block;
     border-radius: 5%;
+    margin: 1ch;
+}
+
+.grid-sizer,
+.course {
+  max-width: 18rem;
 }
 
 #quick {
@@ -47,14 +53,50 @@ a:hover {
 }
 
 .carousel-inner{
-  width: 50rem;
+  width: 100%;
+  height: fit-content;
 }
 
 .d-block{
-  width:50rem;
+  width: 100%;
+  height: fit-content;
 }
 #myCarousel {
-  width: 50rem;
+  max-width: 50rem;
+  height: fit-content;
+}
+
+.carousel-heading {
+  font-size: calc(1.000rem + .9vw);
+}
+.carousel-description {
+  font-size: 90%;
+  margin-bottom: 0%;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#honors_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  height: fit-content;
+}
+
+.carousel-caption {
+  font-size: 100%;
+}
+
+.honor {
+  width: 75%;
+  max-width: 18rem;
 }
 
 .navbar-toggler-icon{
@@ -70,7 +112,7 @@ a:hover {
   }
 }
 
-@media (max-width: 1200px){
+/* @media (max-width: 1200px){
  
   #myCarousel{
     width: auto;
@@ -80,7 +122,7 @@ a:hover {
     width: 100%;
   }
 
-}
+} */
 
 
 @media (orientation:portrait) and (max-aspect-ratio: 1000/1414) {
