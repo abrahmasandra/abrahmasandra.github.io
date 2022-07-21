@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="initial-scale=1, width=device-width">
+      <!-- Font Awesome -->
+        <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        rel="stylesheet"
+        />
+        <!-- Google Fonts -->
+        <link
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        rel="stylesheet"
+        />
+        <!-- MDB -->
+        <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css"
+        rel="stylesheet"
+        />
+
+        <style>
+            .links line {
+                stroke: #999;
+                stroke-opacity: 0;
+            }
+        
+            .nodes circle {
+                stroke: #fff;
+                stroke-width: 1.5px;
+            }
+            text {
+                font-family: sans-serif;
+                font-size: 10px;
+            }
+
+            svg {
+                height: min-content; 
+            }
+
+        </style>
+        
+        <link href="bootstrap.min.css" rel="stylesheet">
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js"></script>
+        
+        <link href="styles.css" rel="stylesheet">
+        <title>arnav's personal webpage</title>
+    </head>
+
+    <body>            
+        <header>
+            <div style="position: sticky; top: 0px; z-index:1000;">
+              <nav class="bg-dark sticky-top navbar navbar-expand-sm">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/"><span>arnav brahmasandra</span></a>
+                    <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbar">
+                      <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="index.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              home
+                            </a>
+                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="#about">about me</a></li>
+                              <li><a class="dropdown-item" href="#experience">experience</a></li>
+                              <li><a class="dropdown-item" href="#courses">coursework</a></li>
+                              <li><a class="dropdown-item" href="#honors">honors</a></li>
+                              <li><a class="dropdown-item" href="#projects">projects</a></li>
+                              <li><a class="dropdown-item" href="#skills">skills</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="chemistry.html">chemistry</a></li>
+                        <li class="nav-item"><a class="nav-link" href="baking.html">baking</a></li>
+                        <li class="nav-item"><a class="nav-link" href="space.html">space</a></li>
+                    </ul>
+                  </div>
+                </div>
+            </nav>
+            </div>
+        </header>
+
+        <main>
+            <div class="container">
+                <h1>Visualize your LinkedIn Connections</h1>
+
+                <p><a href="https://www.linkedin.com/help/linkedin/answer/66844/export-connections-from-linkedin" target="_blank">
+                    Export your Connections from LinkedIn</a></p>
+                <p>Then import the csv file here: </p>
+                <p>You may need to remove the LinkedIn's notes from the csv file </p>
+                <input id="csv" type="file">
+
+                <svg height="0"></svg>
+            </div>
+            <script>
+                var fileInput = document.getElementById("csv");
+                var nodes = [];
+                var links = [];
+            
+                readFile = function () {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        connections = $.csv.toObjects(reader.result);
+                        
+                        // you are center node
+                        nodes.push({
+                            "firstName": "You",
+                            "lastName": "",
+                            "name": "You",
+                            "company": ""
+                        });
+                        
+                        // loop through all connections
+                        for (source of connections) {
+                            sourceName = source["First Name"] + " " + source["Last Name"];
+                            
+                            // graph edge between you and connection
+                            // links.push({
+                            //     "source": "You",
+                            //     "target": sourceName
+                            // });
+                            
+                            // connection is a node
+                            nodes.push({
+                                "firstName": source["First Name"],
+                                "lastName": source["Last Name"],
+                                "name": sourceName,
+                                "company": source["Company"]
+                            });
+                            
+                            // if connection has same company as other connection, they should be linked 
+                            for (target of connections) {
+                                targetName = target["First Name"] + " " + target["Last Name"];
+                                if (sourceName != targetName && source["Company"] == target["Company"]) {
+                                    links.push({
+                                        "source": sourceName,
+                                        "target": targetName
+                                    });
+                                }
+                            }
+                        }
+            
+                        graph = {
+                            "nodes": nodes,
+                            "links": links
+                        }
+            
+                        render(graph);
+            
+                    };
+                    reader.readAsBinaryString(fileInput.files[0]);
+                };
+            
+                fileInput.addEventListener('change', readFile);
+            
+                var simulation;
+            
+                /*
+                * Modified from D3.js v4 Force Directed Graph with Labels
+                * https://bl.ocks.org/heybignick/3faf257bbbbc7743bb72310d03b86ee8
+                */
+                function render(graph) {
+                    var width = 1000;
+                    var height = 1000;
+            
+                    var svg = d3.select("svg")
+                        .attr("width", width)
+                        .attr("height", height);
+            
+                    var color = d3.scaleOrdinal(d3.schemeCategory20);
+            
+                    simulation = d3.forceSimulation()
+                        .force("link", d3.forceLink().id(function (d) { return d.name; }))
+                        .force("charge", d3.forceManyBody().strength(-40).distanceMax(0.08 * Math.min(width, height)))
+                        .force("center", d3.forceCenter(width / 2, height / 2));
+
+                    simulation
+                        .nodes(graph.nodes)
+                        .on("tick", ticked);
+            
+                    simulation.force("link")
+                        .links(graph.links);
+            
+                    var link = svg.append("g")
+                        .attr("class", "links")
+                        .selectAll("line")
+                        .data(graph.links)
+                        .enter().append("line")
+            
+                    var node = svg.append("g")
+                        .attr("class", "nodes")
+                        .selectAll("g")
+                        .data(graph.nodes)
+                        .enter().append("circle")
+                        .attr("r", 7)
+                        .style("fill", function(d) { return color(d.company); })
+                        .call(d3.drag()
+                                .on("start", dragstarted)
+                                .on("drag", dragged)
+                                .on("end", dragended));
+            
+            
+                    var lables = node.append("text")
+                        .text(function (d) {
+                            return d.name;
+                        })
+                        .attr('x', 6)
+                        .attr('y', 3);
+            
+                    node.append("title")
+                        .text(function (d) { 
+                            let title = d.name + ": " + d.company;
+                            return title; 
+                        });
+            
+                    
+            
+                    function ticked() {
+                        link
+                            .attr("x1", function (d) { return d.source.x; })
+                            .attr("y1", function (d) { return d.source.y; })
+                            .attr("x2", function (d) { return d.target.x; })
+                            .attr("y2", function (d) { return d.target.y; });
+            
+                        node
+                            .attr("transform", function (d) {
+                                return "translate(" + d.x + "," + d.y + ")";
+                            })
+                    }
+                }
+            
+                function dragstarted(d) {
+                    if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x;
+                    d.fy = d.y;
+                }
+            
+                function dragged(d) {
+                    d.fx = d3.event.x;
+                    d.fy = d3.event.y;
+                }
+            
+                function dragended(d) {
+                    if (!d3.event.active) simulation.alphaTarget(0);
+                    d.fx = null;
+                    d.fy = null;
+                }
+            
+            </script>
+        </main>
+    </body>
+
+</html>
