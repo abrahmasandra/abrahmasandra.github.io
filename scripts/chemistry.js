@@ -1,7 +1,7 @@
 function loadYouTubeVideos(sortBy) {
-    var apiKey = 'AIzaSyC8W_LzKQoscJT7PGsyWsZ1Nk4EcQi8GFI';
+    var apiKey = config.YOUTUBE_KEY;
     var channelId = 'UCub38TXhT_RZkwLwyXtTpaA';
-    var maxResults = 5;
+    var maxResults = 20;
   
     gapi.client.init({
       'apiKey': apiKey

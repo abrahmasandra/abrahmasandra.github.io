@@ -26,7 +26,6 @@
 }
 
 .card {
-    display: inline-block;
     border-radius: 5%;
     margin: 1ch;
 }
@@ -34,6 +33,11 @@
 .grid-sizer,
 .course {
   max-width: 18rem;
+}
+
+.course-container {
+  display: inline-flex;
+  flex-wrap: wrap;
 }
 
 #quick {
@@ -94,7 +98,7 @@ a:hover {
   font-size: 100%;
 }
 
-#experience {
+p, h1, h2, h3, h4, h5, h6 {
   text-transform: lowercase;
 }
 

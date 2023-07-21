@@ -1,5 +1,5 @@
 // JavaScript code to fetch the data from data.json
-fetch('../data.json')
+fetch('./data.json')
     .then(response => response.json())
     .then(data => {
         const accordionExp = document.getElementById('accordion_exp');
