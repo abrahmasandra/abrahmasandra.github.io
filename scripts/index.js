@@ -32,20 +32,25 @@ fetch('./data.json')
             // Create the div elements for the date and location
             const dateDiv = document.createElement('div');
             dateDiv.className = 'flex-child';
+            dateDiv.setAttribute('style', 'display:inline;');
             dateDiv.innerHTML = `
+                <p>
                 <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
                     <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
                 </svg>
                 ${item.duration}
+                </p>
             `;
 
             const locationDiv = document.createElement('div');
             locationDiv.className = 'flex-child';
             locationDiv.innerHTML = `
+                <p>
                 <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                     <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                 </svg>
                 ${item.location}
+                </p>
             `;
 
             // Append date and location divs to the experience description
@@ -73,7 +78,7 @@ fetch('./data.json')
             const desc = item.description;
             for (let j = 0; j < desc.length; j++) {
                 const li = document.createElement('li');
-                li.textContent = desc[j];
+                li.innerHTML = `<p>${desc[j]}</p>`;
                 ul.appendChild(li);
             }
 

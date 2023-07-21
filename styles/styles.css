@@ -89,9 +89,9 @@ a:hover {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  height: fit-content;
+  align-items: stretch;
+  /* max-width: 100%; */
+  /* gap: 1rem;  */
 }
 
 .carousel-caption {
@@ -103,8 +103,8 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .honor {
-  width: 75%;
-  max-width: 18rem;
+  flex: 1 1 15rem;
+  max-width: 25rem;
 }
 
 .navbar-toggler-icon{
