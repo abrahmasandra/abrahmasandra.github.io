@@ -90,8 +90,6 @@ a:hover {
   flex-wrap: wrap;
   justify-content: center;
   align-items: stretch;
-  /* max-width: 100%; */
-  /* gap: 1rem;  */
 }
 
 .carousel-caption {
